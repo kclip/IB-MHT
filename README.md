@@ -30,7 +30,7 @@ The repository includes example files used for the MNIST experiment from the pap
 1. Ensure that the `data_X.csv`, `data_Y.csv`, and `data_Z.csv` files are placed in the correct directory.
    
 2. Modify the necessary parameters in the code:
-   - You may need to adjust the values of the user-defined parameters, such as the threshold \( \alpha \) for the mutual information constraint, and the outage probability \( \delta \).
+   - You may need to adjust the values of the user-defined parameters, such as the threshold $\alpha$ for the mutual information constraint, and the outage probability $\delta$.
 
 
 ## License
