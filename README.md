@@ -32,6 +32,8 @@ The repository includes example files used for the MNIST experiment from the pap
 2. Modify the necessary parameters in the code:
    - You may need to adjust the values of the user-defined parameters, such as the threshold $\alpha$ for the mutual information constraint, and the outage probability $\delta$.
 
+3. Run the file IB_Pareto.py
+
 
 ## License
 
