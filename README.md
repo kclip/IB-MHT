@@ -14,10 +14,8 @@ The algorithm, which builds on Pareto testing and the learn-then-test method, op
 To use the IB-MHT algorithm, you will need to prepare your data in the form of CSV files. These files should correspond to the input variables \( X \), output variables \( Y \), and the feature representations \( Z \).
 
 ### Data Format:
-- **Rows**: Each row corresponds to a set of candidate hyperparameters.
+- **Rows**: Each row corresponds to a candidate hyperparameter.
 - **Columns**: Each column represents a data point collected for each hyperparameter.
-
-The repository includes example files used for the MNIST experiment from the paper. These can be found in the `examples` folder.
 
 ### Data Requirements:
 - Prepare the `data_X.csv`, `data_Y.csv`, and `data_Z.csv` files before running the algorithm.
