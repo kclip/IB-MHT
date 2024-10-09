@@ -1,19 +1,6 @@
- IB-MHT: Information Bottleneck via Multiple Hypothesis Testing
+# IB-MHT: Information Bottleneck via Multiple Hypothesis Testing
 
 This repository provides the implementation of the **IB-MHT algorithm** introduced in the paper [_Information Bottleneck via Multiple Hypothesis Testing (IB-MHT)_](https://arxiv.org/abs/2409.07325). This algorithm wraps around existing information bottleneck solvers and provides statistically valid guarantees on meeting the information-theoretic constraints. The IB-MHT method leverages Pareto testing and learn-then-test (LTT) frameworks to ensure statistical robustness.
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Data Preparation](#data-preparation)
-- [Usage](#usage)
-- [Examples](#examples)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-- [Citation](#citation)
 
 ## Overview
 
