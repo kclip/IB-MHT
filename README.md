@@ -1,47 +1,73 @@
-# Efficiently Controlling Multiple Risks with Pareto Testing
+ IB-MHT: Information Bottleneck via Multiple Hypothesis Testing
 
-Code for [Efficiently Controlling Multiple Risks with Pareto Testing](https://openreview.net/pdf?id=cyg2YXn_BqF) 
-![](transformer_pruning.png)
-## Summary
+This repository provides the implementation of the **IB-MHT algorithm** introduced in the paper [_Information Bottleneck via Multiple Hypothesis Testing (IB-MHT)_](https://arxiv.org/abs/2409.07325). This algorithm wraps around existing information bottleneck solvers and provides statistically valid guarantees on meeting the information-theoretic constraints. The IB-MHT method leverages Pareto testing and learn-then-test (LTT) frameworks to ensure statistical robustness.
 
-Machine learning applications frequently come with multiple diverse objectives and constraints that can change over time. Accordingly, trained models can be tuned with sets of hyper-parameters that affect their predictive behavior (e.g., their run-time efficiency versus error rate). As the number of constraints and hyper-parameter dimensions grow, naively selected settings may lead to sub-optimal and/or unreliable results. We develop an efficient method for calibrating models such that their predictions provably satisfy multiple explicit and simultaneous statistical guarantees (e.g., upper-bounded error rates), while also optimizing any number of additional, unconstrained objectives (e.g., total run-time cost). Building on recent results in distribution-free, finite-sample risk control for general losses, we propose Pareto Testing: a two-stage process which combines multi-objective optimization with multiple hypothesis testing. The optimization stage constructs a set of promising combinations on the Pareto frontier. We then apply statistical testing to this frontier only to identify configurations that have (i) high utility with respect to our objectives, and (ii) guaranteed risk levels with respect to our constraints, with specifiably high probability. We demonstrate the effectiveness of our approach to reliably accelerate the execution of large-scale Transformer models in natural language processing (NLP) applications. In particular, we show how Pareto Testing can be used to dynamically configure multiple inter-dependent model attributes—including the number of layers computed before exiting, number of attention heads pruned, or number of text tokens considered—to simultaneously control and optimize various accuracy and cost metrics.
+## Table of Contents
 
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Data Preparation](#data-preparation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Citation](#citation)
 
-### Prerequisites
+## Overview
 
-* pytorch
-* transformers
-* numpy 
-* pandas
-* seaborn
-* scipy
-* captum
-* tqdm
+The Information Bottleneck (IB) framework is widely used in machine learning to extract compressed features that are informative for downstream tasks. While traditional approaches rely on heuristic tuning of hyperparameters without guarantees, IB-MHT offers a statistically valid solution to ensure that the learned features meet the IB constraints with high probability.
 
-### Usage
-
-1. Dowload AG News/IMDB dataset into data/ag or data/imdb folder
-2. Process data:
-```sh
-sh process_data.sh TASK
-```
-3. Train multi-dimensional adaptive transformer:
-```sh
-sh adaptive_pruning.sh TASK
-```
-4. Calibration:
-```sh
-sh calibration.sh TASK
-```
-TASK = {ag, imdb}
+The algorithm, which builds on Pareto testing and the learn-then-test method, optimizes the mutual information between features and outputs while minimizing irrelevant information. The IB-MHT algorithm wraps around existing IB solvers to ensure that the extracted features meet predefined constraints on mutual information, even when the dataset size is limited.
 
 
-### Citation
-If you use this in your work please cite:
+## Data Preparation
+
+To use the IB-MHT algorithm, you will need to prepare your data in the form of CSV files. These files should correspond to the input variables \( X \), output variables \( Y \), and the feature representations \( Z \).
+
+### Data Format:
+- **Rows**: Each row corresponds to a set of candidate hyperparameters.
+- **Columns**: Each column represents a data point collected for each hyperparameter.
+
+The repository includes example files used for the MNIST experiment from the paper. These can be found in the `examples` folder.
+
+### Data Requirements:
+- Prepare the `data_X.csv`, `data_Y.csv`, and `data_Z.csv` files before running the algorithm.
+- Ensure that the number of rows matches the number of candidate hyperparameters, and the number of columns matches the number of data points.
+
+## Usage
+
+### Running the IB-MHT Algorithm:
+
+1. Ensure that the `data_X.csv`, `data_Y.csv`, and `data_Z.csv` files are placed in the correct directory.
+   
+2. Modify the necessary parameters in the code:
+   - You may need to adjust the values of the user-defined parameters, such as the threshold \( \alpha \) for the mutual information constraint, and the outage probability \( \delta \).
+
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+If you have any questions or need further information, feel free to reach out:
+
+- **Email**: amirmohammad.farzaneh@kcl.ac.uk
+
+## Citation
+
+If you find this project useful for your research, please consider citing the following paper:
+
 ```bibtex
-@inproceedings{laufer2023efficiently,
-    title={Efficiently Controlling Multiple Risks with Pareto Testing},
-    author={Bracha Laufer-Goldshtein and Adam Fisch and Regina Barzilay and Tommi Jaakkola},
-    booktitle={Proceedings of The Eleventh International Conference on Learning Representations},
-    year={2023},
+@misc{farzaneh2024statisticallyvalidinformationbottleneck,
+      title={Statistically Valid Information Bottleneck via Multiple Hypothesis Testing}, 
+      author={Amirmohammad Farzaneh and Osvaldo Simeone},
+      year={2024},
+      eprint={2409.07325},
+      archivePrefix={arXiv},
+      primaryClass={cs.IT},
+      url={https://arxiv.org/abs/2409.07325}, 
 }
+```
